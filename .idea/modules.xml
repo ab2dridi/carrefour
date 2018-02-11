@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/carrefourchallenge.iml" filepath="$PROJECT_DIR$/.idea/modules/carrefourchallenge.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/carrefourchallenge-build.iml" filepath="$PROJECT_DIR$/.idea/modules/carrefourchallenge-build.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/carrefour.iml" filepath="$PROJECT_DIR$/.idea/modules/carrefour.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/carrefour-build.iml" filepath="$PROJECT_DIR$/.idea/modules/carrefour-build.iml" />
     </modules>
   </component>
 </project>
