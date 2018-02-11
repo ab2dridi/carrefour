@@ -33,24 +33,19 @@ object Transactions extends App {
           // 1. indicateur : top_100_ventes_<MAGASIN_ID>_YYYYMMDD.data
           val top100ProduitParMagasin: Map[String, List[TransactionTriplet]] = getTop100ProduitParMagasin(splitFile)
 
-          top100ProduitParMagasin.foreach{
+          top100ProduitParMagasin foreach {
             case (magasinId:String, transactions : List[TransactionTriplet]) =>
               // stockage de l'indicateur en output
               printToFile(new File(s"top_100_ventes_GLOBAL_${magasinId}_$formattedDate.data")) {
                 p: PrintWriter =>
                   p.println("produit, qte")
                   transactions.foreach{
-                    case transaction : TransactionTriplet =>
+                    transaction : TransactionTriplet =>
                       p.println(s"${transaction.produit}, ${transaction.qte}")
                   }
               }
-
           }
 
-
-
-
-          System.exit(0)
           // 2. indicateur : top_100_ventes_GLOBAL_YYYYMMDD.data
           val top100ProduitGlobal: Seq[TransactionTuple] = getTop100ProduitGlobal(splitFile)
 
@@ -59,7 +54,7 @@ object Transactions extends App {
             p: PrintWriter =>
               p.println("produit, qte")
               top100ProduitGlobal.foreach{
-                case transaction : TransactionTuple =>
+                transaction : TransactionTuple =>
                 p.println(s"${transaction.produit}, ${transaction.qte}")
                 }
               }
@@ -68,8 +63,29 @@ object Transactions extends App {
           // 3. indicateur : top_100_ca_<MAGASIN_ID>_YYYYMMDD.data
           val top100CAMagasin = getTop100CAMagasin(splitFile, formattedDate, conf)
 
-          // 6. indicateur : top_100_ventes_GLOBAL_YYYYMMDD-J7.data
+          //4. indicateur: top_100_ca_GLOBAL_YYYYMMDD.data
+          val top100CAGlobal = getTop100CAGlobal(splitFile, formattedDate, conf)
+
+          //5. indicateur: top_100_ventes_<MAGASIN_ID>_YYYYMMDD-J7.data
+          val top100ProduitsJ7 = getTop100Produit7derniersJoursParMagasin(formatter, date, conf, splitFile)
+
+          //6. indicateur : top_100_ventes_GLOBAL_YYYYMMDD-J7.data
           val top100Produit7DernierJours = getTop100Produit7derniersJours(formatter, date, conf, splitFile)
+
+          //7. indicateur: top_100_ca_<MAGASIN_ID>_YYYYMMDD-J7.data
+          val top100CAMagasinJ7 = getTop100CA7derniersJoursParMagasin(formatter, date, conf)
+
+          //8. indicateur: top_100_ca_GLOBAL_YYYYMMDD-J7.data
+          val top100CAGlobalJ7 = getTop100CA7derniersJoursGlobal(formatter, date, conf)
+
+
+          top100CAGlobal.foreach(println)
+//          top100ProduitsJ7.foreach(println)
+//          top100CAMagasinJ7.foreach(println)
+//          top100CAGlobalJ7.foreach(println)
+
+          System.exit(0)
+
 
           // stockage de l'indicateur en output
           printToFile(new File(s"top_100_ventes_GLOBAL_$formattedDate-J7.data")) {

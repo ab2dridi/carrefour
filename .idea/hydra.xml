@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="HydraSettings">
-    <option name="hydraStorePath" value="C:\Users\cctt2124\IdeaProjects\CarrefourChallenge\.hydra\idea" />
+    <option name="hydraStorePath" value="C:\Users\ifall\carrefour\.hydra\idea" />
     <option name="noOfCores" value="2" />
-    <option name="projectRoot" value="C:\Users\cctt2124\IdeaProjects\CarrefourChallenge" />
+    <option name="projectRoot" value="C:\Users\ifall\carrefour" />
     <option name="sourcePartitioner" value="auto" />
   </component>
 </project>

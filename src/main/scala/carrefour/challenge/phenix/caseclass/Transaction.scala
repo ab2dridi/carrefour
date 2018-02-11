@@ -13,6 +13,10 @@ case class TransactionTripletCA(
                                  produit: Long,
                                  prix: Double)
 
+case class TransactionTupleCA(
+                                 produit: Long,
+                                 prix: Double)
+
 case class TransactionTriplet(
                                magasin: String,
                               produit: Long,
@@ -23,3 +27,10 @@ case class TransactionTuple(
                              produit: Long,
                             qte: Long
                            )
+
+case class JoinedTransaction(
+                            magasin: String,
+                            produit: Long,
+                            qte: Long,
+                            prix: Double
+                            )
