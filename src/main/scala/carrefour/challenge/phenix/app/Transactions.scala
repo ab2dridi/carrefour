@@ -79,10 +79,10 @@ object Transactions extends App {
           val top100CAGlobalJ7 = getTop100CA7derniersJoursGlobal(formatter, date, conf)
 
 
-          top100CAGlobal.foreach(println)
-//          top100ProduitsJ7.foreach(println)
-//          top100CAMagasinJ7.foreach(println)
-//          top100CAGlobalJ7.foreach(println)
+//          top100CAGlobal.foreach(println)
+          top100ProduitsJ7.foreach(println)
+          top100CAMagasinJ7.foreach(println)
+          top100CAGlobalJ7.foreach(println)
 
           System.exit(0)
 

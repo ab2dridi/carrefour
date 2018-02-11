@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="f163bdec-b1d5-4696-8994-87002c9805cd" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/carrefour/challenge/phenix/app/Transactions.scala" afterPath="$PROJECT_DIR$/src/main/scala/carrefour/challenge/phenix/app/Transactions.scala" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/carrefour/challenge/phenix/utils/KpiTools.scala" afterPath="$PROJECT_DIR$/src/main/scala/carrefour/challenge/phenix/utils/KpiTools.scala" />
       <change beforePath="$PROJECT_DIR$/target/scala-2.12/classes/carrefour/challenge/phenix/app/Transactions$.class" afterPath="$PROJECT_DIR$/target/scala-2.12/classes/carrefour/challenge/phenix/app/Transactions$.class" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
@@ -29,21 +31,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Transactions.scala" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Transactions.scala" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/scala/carrefour/challenge/phenix/app/Transactions.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="52" column="73" lean-forward="false" selection-start-line="52" selection-start-column="73" selection-end-line="52" selection-end-column="73" />
+            <state relative-caret-position="119">
+              <caret line="84" column="28" lean-forward="false" selection-start-line="82" selection-start-column="27" selection-end-line="84" selection-end-column="28" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="KpiTools.scala" pinned="false" current-in-tab="true">
+      <file leaf-file-name="KpiTools.scala" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/scala/carrefour/challenge/phenix/utils/KpiTools.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="523">
-              <caret line="197" column="9" lean-forward="true" selection-start-line="197" selection-start-column="9" selection-end-line="197" selection-end-column="9" />
+            <state relative-caret-position="-123">
+              <caret line="222" column="32" lean-forward="false" selection-start-line="222" selection-start-column="32" selection-end-line="222" selection-end-column="32" />
               <folding>
                 <element signature="e#42#76#0" expanded="true" />
               </folding>
@@ -423,21 +425,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/carrefour/challenge/phenix/app/Transactions.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="52" column="73" lean-forward="false" selection-start-line="52" selection-start-column="73" selection-end-line="52" selection-end-column="73" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/scala/carrefour/challenge/phenix/utils/KpiTools.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="523">
-          <caret line="197" column="9" lean-forward="true" selection-start-line="197" selection-start-column="9" selection-end-line="197" selection-end-column="9" />
+        <state relative-caret-position="-123">
+          <caret line="222" column="32" lean-forward="false" selection-start-line="222" selection-start-column="32" selection-end-line="222" selection-end-column="32" />
           <folding>
             <element signature="e#42#76#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/carrefour/challenge/phenix/app/Transactions.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="84" column="28" lean-forward="false" selection-start-line="82" selection-start-column="27" selection-end-line="84" selection-end-column="28" />
+          <folding />
         </state>
       </provider>
     </entry>
