@@ -175,7 +175,7 @@ object KpiTools {
                                            conf: Config
                                          ): Stream[TransactionTripletCA] = {
 
-    val listDateToRead = (0 to 1).foldLeft(List(): List[String]) {
+    val listDateToRead = (0 to 7).foldLeft(List(): List[String]) {
       (acc: List[String], minusDays: Int) => date.minusDays(minusDays).format(formatter) :: acc
     }
 
@@ -193,7 +193,7 @@ object KpiTools {
               transaction.magasin,
               transaction.produit,
               transaction.qte,
-              mapProductWithPrice(transaction.produit)
+              mapProductWithPrice.getOrElse(transaction.produit, 0.0D)
             )
         } ++ acc
     }
@@ -220,7 +220,7 @@ object KpiTools {
                                        conf: Config
                                      ): Stream[TransactionTupleCA] = {
 
-    val listDateToRead = (0 to 1).foldLeft(List(): List[String]) {
+    val listDateToRead = (0 to 7).foldLeft(List(): List[String]) {
       (acc: List[String], minusDays: Int) => date.minusDays(minusDays).format(formatter) :: acc
     }
 
@@ -238,7 +238,7 @@ object KpiTools {
               transaction.magasin,
               transaction.produit,
               transaction.qte,
-              mapProductWithPrice(transaction.produit)
+              mapProductWithPrice.getOrElse(transaction.produit, 0.0D)
             )
         } ++ acc
     }
