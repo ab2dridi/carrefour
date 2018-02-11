@@ -1,5 +1,6 @@
 package carrefour.challenge.phenix.utils
 
+import java.io.{File, PrintWriter}
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
@@ -7,9 +8,13 @@ import carrefour.challenge.phenix.caseclass._
 import carrefour.challenge.phenix.utils.CmdLineParser.Config
 import carrefour.challenge.phenix.utils.UsefulFunctions._
 
-import scala.collection.immutable
-
 object KpiTools {
+
+  /**
+    *
+    * @param splitFile
+    * @return
+    */
   def getTop100ProduitParMagasin(splitFile: Stream[Transaction]): Map[String, List[TransactionTriplet]] = {
     splitFile.groupBy(
       p => (p.magasin, p.produit)
@@ -24,6 +29,34 @@ object KpiTools {
     }
   }
 
+
+
+  /**
+    *
+    * @param splitFile
+    * @return
+    */
+  def getTop100ProduitParMagasinAndWriteOutput(splitFile: Stream[Transaction]) = {
+    splitFile.groupBy(
+      p => (p.magasin, p.produit)
+    ).map {
+      case ((magasin: String, produit: Long), transactions: Stream[Transaction]) =>
+        TransactionTriplet(magasin, produit, transactions.map(_.qte).sum)
+    }.groupBy(
+      p => p.magasin
+    ).map {
+      case (magasin: String, transactions: List[TransactionTriplet]) =>
+        (magasin, transactions.sortWith(_.qte > _.qte).take(100))
+
+    }
+
+  }
+
+  /**
+    *
+    * @param splitFile
+    * @return
+    */
   def getTop100ProduitGlobal(splitFile: Stream[Transaction]): Seq[TransactionTuple] = {
     splitFile.groupBy(
       p => p.produit
@@ -33,6 +66,14 @@ object KpiTools {
     }.toStream.sortWith(_.qte > _.qte).take(100)
   }
 
+  /**
+    *
+    * @param formatter
+    * @param date
+    * @param conf
+    * @param currentFile
+    * @return
+    */
   def getTop100Produit7derniersJours(
                                       formatter: DateTimeFormatter,
                                       date: LocalDate,
@@ -52,6 +93,13 @@ object KpiTools {
     getTop100ProduitGlobal(allFiles)
   }
 
+  /**
+    *
+    * @param file
+    * @param date
+    * @param conf
+    * @return
+    */
   def getTop100CAMagasin(file: Stream[Transaction], date: String, conf: Config): Stream[TransactionTripletCA] = {
     file.groupBy(
       p => p.magasin
@@ -70,5 +118,6 @@ object KpiTools {
             TransactionTripletCA(magasin, p.produit, p.qte * price)
         }
     }.toStream.sortWith(_.prix > _.prix).take(100)
+
   }
 }

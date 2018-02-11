@@ -1,5 +1,6 @@
 package carrefour.challenge.phenix.app
 
+import java.util.logging.Logger
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import carrefour.challenge.phenix.utils.CmdLineParser._
@@ -7,6 +8,8 @@ import carrefour.challenge.phenix.utils.KpiTools._
 import carrefour.challenge.phenix.caseclass._
 import carrefour.challenge.phenix.utils.UsefulFunctions._
 import carrefour.challenge.phenix.constant.Constants._
+import java.io._
+
 
 /**
   * la classe qui servira de classe principale de calcul des KPIs
@@ -18,19 +21,62 @@ object Transactions extends App {
     conf =>
       conf.action.toLowerCase match {
         case `run` =>
+
+          val logger: Logger = Logger.getLogger(this.getClass.getName)
+
           val formatter: DateTimeFormatter = DateTimeFormatter.ofPattern("yyyyMMdd")
           val date = LocalDate.now //current date
           val formattedDate = /*date.format(formatter)*/ "20170514"
 
           val splitFile: Stream[Transaction] = readTransactionFile(formattedDate, conf)
 
-          val top100ProduitParMagasin = getTop100ProduitParMagasin(splitFile)
+          // 1. indicateur : top_100_ventes_<MAGASIN_ID>_YYYYMMDD.data
+          val top100ProduitParMagasin: Map[String, List[TransactionTriplet]] = getTop100ProduitParMagasin(splitFile)
 
-          val top100ProduitGlobal = getTop100ProduitGlobal(splitFile)
+          top100ProduitParMagasin.foreach{
+            case (magasinId:String, transactions : List[TransactionTriplet]) =>
+              // stockage de l'indicateur en output
+              printToFile(new File(s"top_100_ventes_GLOBAL_${magasinId}_$formattedDate.data")) {
+                p: PrintWriter =>
+                  p.println("produit, qte")
+                  transactions.foreach{
+                    case transaction : TransactionTriplet =>
+                      p.println(s"${transaction.produit}, ${transaction.qte}")
+                  }
+              }
 
+          }
+
+
+
+
+          System.exit(0)
+          // 2. indicateur : top_100_ventes_GLOBAL_YYYYMMDD.data
+          val top100ProduitGlobal: Seq[TransactionTuple] = getTop100ProduitGlobal(splitFile)
+
+          // stockage de l'indicateur en output
+          printToFile(new File(s"top_100_ventes_GLOBAL_$formattedDate.data")) {
+            p: PrintWriter =>
+              p.println("produit, qte")
+              top100ProduitGlobal.foreach{
+                case transaction : TransactionTuple =>
+                p.println(s"${transaction.produit}, ${transaction.qte}")
+                }
+              }
+
+
+          // 3. indicateur : top_100_ca_<MAGASIN_ID>_YYYYMMDD.data
+          val top100CAMagasin = getTop100CAMagasin(splitFile, formattedDate, conf)
+
+          // 6. indicateur : top_100_ventes_GLOBAL_YYYYMMDD-J7.data
           val top100Produit7DernierJours = getTop100Produit7derniersJours(formatter, date, conf, splitFile)
 
-          val top100CAMagasin = getTop100CAMagasin(splitFile, formattedDate, conf)
+          // stockage de l'indicateur en output
+          printToFile(new File(s"top_100_ventes_GLOBAL_$formattedDate-J7.data")) {
+            p: PrintWriter =>
+              top100Produit7DernierJours.foreach(
+                p.println
+              )}
 
 
           top100CAMagasin.foreach(println)
@@ -38,6 +84,15 @@ object Transactions extends App {
 
           //temporary return value
           top100Produit7DernierJours
+
+
+
+
+
+
+          // get memory informations
+          getMemoryInformations(logger)
+
 
         case _ =>
 
@@ -173,6 +228,7 @@ object Transactions extends App {
 //  // calcul du temps total d'exécution
 //  val totalExecutionTime = TimeUnit.MILLISECONDS.convert(endTime - startTime, TimeUnit.NANOSECONDS)
 //  logger.info(s" Execution time in Milliseconds: $totalExecutionTime")
+
 
 }
 

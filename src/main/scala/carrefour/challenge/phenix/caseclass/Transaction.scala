@@ -1,7 +1,5 @@
 package carrefour.challenge.phenix.caseclass
 
-import java.time.LocalDate
-
 case class Transaction(
                         txId: Long,
                         dateTime: String,
@@ -10,8 +8,18 @@ case class Transaction(
                         qte: Long
                       )
 
-case class TransactionTripletCA(magasin: String, produit: Long, prix: Double)
+case class TransactionTripletCA(
+                                 magasin: String,
+                                 produit: Long,
+                                 prix: Double)
 
-case class TransactionTriplet(magasin: String, produit: Long, qte: Long)
+case class TransactionTriplet(
+                               magasin: String,
+                              produit: Long,
+                              qte: Long
+                             )
 
-case class TransactionTuple(produit: Long, qte: Long)
+case class TransactionTuple(
+                             produit: Long,
+                            qte: Long
+                           )
