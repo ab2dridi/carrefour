@@ -24,7 +24,7 @@ Exécution du script:
   - les référentiels : `reference_prod_ID-MAGASIN_YYYYMMDD.data` où ID_MAGASIN est un UUID.
 
  
-Pour Exécuter le script on lance la commande suivante :  `java -jar repertoire_du_projet/target/CarrefourChallenge-assembly-0.1.jar run -d repertoire/des/donnees`
+Pour Exécuter le script on lance la commande suivante :  `java -jar repertoire_du_projet/target/scala-2.11/CarrefourChallenge-assembly-0.1.jar run -d repertoire/des/donnees`
 
 
 
@@ -47,6 +47,21 @@ output:
 
 
 
+
+Versions:
+--------
+* scala 2.11
+* java 9
+* sbt 1.0.2
+
+
+
+Environnement et outils:
+--------
+intellij idea
+
+
+
 Regénération du code source:
 --------
 
@@ -55,6 +70,6 @@ Regénération du code source:
 `cd repertoire_du_projet`
 `sbt clean assembly`
 
-  - un jar sera généré dans le repertoire `repertoire_du_projet/target`
+  - un jar sera généré dans le repertoire `repertoire_du_projet/target/scala-2.11`
   - le nom du jar : `CarrefourChallenge-assembly-0.1.jar`
  
